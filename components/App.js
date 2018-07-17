@@ -8,9 +8,9 @@ App = React.createClass({
 },
 
 getGif: function(searchingText, callback) {
-	var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
+	var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + 'HoJIjlMtXlhBI0dxLP6PLkRV1h0oPvB9' + '&tag=' + searchingText;
 	var xhr = new XMLHttpRequest();
-	xhr.opet('GET', url);
+	xhr.open('GET', url);
 	xhr.onload = function() {
 		if (xhr.status === 200) {
 			var data = JSON.parse(xhr.responseText).data;
@@ -19,6 +19,7 @@ getGif: function(searchingText, callback) {
 					sourceUrl: data.url
 				};
 				callback(gif);
+			}
 		};
 		xhr.send();
 	},
@@ -55,16 +56,5 @@ handleSearch: function(searchingText) {
 			 	/>
 			 </div>
 			);
-	}
-});
-
-
-
-
-
-
-
-
-
-	
-}
+		}
+	});
