@@ -14,14 +14,15 @@ geGif: function(searchingText, callback) {
 			xhr.onload = function() {
 				if (xhr.status === 200) {
 				var data = JSON.parse(xhr.responseText).data;
-				xhr(JSON.parse(xhr.responseText).data)
+				resolve(JSON.parse(xhr.responseText).data)
 			}else {
 				reject(new Error(this.statusText));
 			}
 		};
 		xhr.onerror = function() {
-			xhr(new Error(`XMLHttpRequest Error: ${this.statusText}`)
-		);
+			reject(
+				new Error(`XMLHttpRequest Error: ${this.statusText}`)
+		);			
 	};
 		xhr.open('GET', url);
 		xhr.send();
