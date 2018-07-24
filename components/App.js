@@ -6,15 +6,15 @@ App = React.createClass({
 		gif: {}
 	};
 },
-geGif: function(searchingText, callback) {
-	var url = 'http://api.giphy.com' + '/v1/gifs/random?api_key=' + 'HoJIjlMtXlhBI0dxLP6PLkRV1h0oPvB9' + '&tag=' + searchingText;
+getGif: function(searchingText, callback) {
+	const url = 'http://api.giphy.com' + '/v1/gifs/random?api_key=' + 'HoJIjlMtXlhBI0dxLP6PLkRV1h0oPvB9' + '&tag=' + searchingText;
 	function httpGet(url) {
 		return new Promise(function(resolve, reject){
 			var xhr = new XMLHttpRequest();
 			xhr.onload = function() {
 				if (xhr.status === 200) {
 				var data = JSON.parse(xhr.responseText).data;
-				resolve(JSON.parse(xhr.responseText).data)
+				resolve(JSON.parse(xhr.responseText).data);
 			}else {
 				reject(new Error(this.statusText));
 			}
@@ -29,10 +29,10 @@ geGif: function(searchingText, callback) {
 		});
 	}
 	httpGet(url)
-	.then((data) => {
+	.then((response) => {
 		var gif = {
-					url: data.fixed_width_downsampled_url,
-					sourceUrl: data.url
+					url: response.fixed_width_downsampled_url,
+					sourceUrl: response.url
 				};
 				callback(gif);
 		})
